@@ -4,10 +4,18 @@ require(matrixStats)
 set.seed(1) #set seed
 options(mc.cores=3)
 
-data = read.csv("Ligachie2020.csv",
+data = read.csv("https://raw.githubusercontent.com/ProfNascimento/GLM_Chilean_Soccer_League/main/Ligachie2020.csv",
                 col.names = c("Home","score1","score2", "Away"), 
                 stringsAsFactors = FALSE, sep = ";",header = FALSE)
 head(data)
+
+## GOALS DISTRIB HOME x AWAY
+boxplot(data[,2]~data[,1], boxfill = NA, border = NA, ylab="GOALS",xlab="TEAM",main="2020 Chilean Premier Soccer League") #invisible boxes - only axes and plot area
+boxplot(score2~Away,data = data, xaxt = "n", add = TRUE, boxfill=rgb(0.8,0.1,0.3,0.6), 
+        boxwex=0.25, at = 1:18 - 0.15) #shift these left by -0.15
+boxplot(score1~Home,data = data, xaxt = "n", add = TRUE, boxfill=rgb(0.1,0.1,0.7,0.5), 
+        boxwex=0.25, at = 1:18 + 0.15) #shift to the right by +0.15
+legend("topleft",c("HOME","AWAY"),col=c(rgb(0.1,0.1,0.7,0.5),rgb(0.8,0.1,0.3,0.6)),pch=15)
 
 ng = nrow(data) # Number of games
 nt = length(unique(data$Home)) # Number of teams
