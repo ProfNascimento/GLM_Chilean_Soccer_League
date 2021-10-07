@@ -45,7 +45,7 @@ my_data = list(
 ##      MODEL 1 - Non-Hierarchical model       ##
 ## Traditional method (Non-informative Priors) ##
 #################################################
-nhpoolfit = stan(file = "~/STAN/non_hier_model.stan", 
+nhpoolfit = stan(file = "https://raw.githubusercontent.com/ProfNascimento/GLM_Chilean_Soccer_League/main/non_hier_model.stan", 
                  data = my_data, iter = 2000, chains = 4, seed = 123456)
 print(nhpoolfit)
 
@@ -73,7 +73,7 @@ text(attack ,defense , labels=teams , cex=0.7 , pos=4)
 ##################################
 ## MODEL 2 - Hierarchical model ##
 ##################################
-hfit = stan(file = "~/STAN/hier_model.stan", 
+hfit = stan(file = "https://raw.githubusercontent.com/ProfNascimento/GLM_Chilean_Soccer_League/main/hier_model.stan", 
             data = my_data, iter = 2000, chains = 4, seed = 123456)
 
 print(hfit)
